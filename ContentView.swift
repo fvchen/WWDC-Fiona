@@ -19,14 +19,32 @@ struct ContentView : View {
     ]
     var body: some View {
         NavigationView {
-            
-            ScrollView {
-                HStack {
-                    ForEach(boxes.identified(by: \.id)) {box in
-                        BoxView(box: box)
+            ZStack{
+                GeometryReader {geo in
+                                    ZStack{
+                                        Image("background")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .edgesIgnoringSafeArea(.all)
+                                            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                                            .opacity(1.0)
+                                   
+                                    
+                                    
+                                    }
+                                }
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(0..<boxes.count){I in BoxView(box: boxes[I])
+                                .frame(width: 300, height: 400)
+                                .position(x: 170, y: 250)
+                        }
                     }
                 }
             }
+            
+            
         }.padding(20)
     }
 }
@@ -41,8 +59,7 @@ struct BoxView: View {
         VStack {
             Image("\(box.imageUrl)")
                 .resizable()
-                .cornerRadius(12)
-                .frame(width: 80, height: 80)
         }
     }
 }
+//tap gesture, masukinnya di box view
