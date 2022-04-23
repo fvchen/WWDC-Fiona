@@ -3,19 +3,20 @@ import SwiftUI
 struct Box {
     var id: Int
     let imageUrl : String
+    var frontimageUrl : String
 }
 
 struct ContentView : View {
 
     let boxes : [Box] = [
-    Box(id: 0, imageUrl: "back1"),
-    Box(id: 1, imageUrl: "back2"),
-    Box(id: 2, imageUrl: "back3"),
-    Box(id: 3, imageUrl: "back4"),
-    Box(id: 4, imageUrl: "back5"),
-    Box(id: 5, imageUrl: "back6"),
-    Box(id: 6, imageUrl: "back7"),
-    Box(id: 7, imageUrl: "back8")
+    Box(id: 0, imageUrl: "back1", frontimageUrl: "task1"),
+    Box(id: 1, imageUrl: "back2", frontimageUrl: "task2"),
+    Box(id: 2, imageUrl: "back3", frontimageUrl: "task3"),
+    Box(id: 3, imageUrl: "back4", frontimageUrl: "task4"),
+    Box(id: 4, imageUrl: "back5", frontimageUrl: "task5"),
+    Box(id: 5, imageUrl: "back6", frontimageUrl: "task6"),
+    Box(id: 6, imageUrl: "back7", frontimageUrl: "task7"),
+    Box(id: 7, imageUrl: "back8", frontimageUrl: "task8")
     ]
     var body: some View {
         NavigationView {
@@ -54,11 +55,16 @@ struct ContentView : View {
 struct BoxView: View {
     
     let box: Box
-    
+    @State var turn = false
+    var tapGesture: some Gesture{
+        TapGesture().onEnded { _ in
+            self.turn.toggle()
+        }
+    }
     var body: some View {
         VStack {
-            Image("\(box.imageUrl)")
-                .resizable()
+            Image("\(turn ? box.frontimageUrl : box.imageUrl)")
+                .resizable().gesture(tapGesture)
         }
     }
 }
