@@ -9,7 +9,7 @@ struct Box {
 struct ContentView : View {
 
     let boxes : [Box] = [
-    Box(id: 0, imageUrl: "back1", frontimageUrl: "task1"),
+    Box(id: 0, imageUrl: "back1", frontimageUrl: "task0"),
     Box(id: 1, imageUrl: "back2", frontimageUrl: "task2"),
     Box(id: 2, imageUrl: "back3", frontimageUrl: "task3"),
     Box(id: 3, imageUrl: "back4", frontimageUrl: "task4"),
@@ -31,14 +31,14 @@ struct ContentView : View {
                                             .opacity(1.0)
                                    
                                     
-                                    
+                                
                                     }
                                 }
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(0..<boxes.count){I in BoxView(box: boxes[I])
-                                .frame(width: 300, height: 400)
+                                .frame(width: 300, height: 430)
                                 .position(x: 170, y: 250)
                         }
                     }
@@ -49,8 +49,6 @@ struct ContentView : View {
         }.padding(20)
     }
 }
-
-
 
 struct BoxView: View {
     
